@@ -1,0 +1,50 @@
+Main DeepLabCut Guide:  https://github.com/AlexEMG/DeepLabCut
+
+Steps To Start a Project:
+
+1) Open Anaconda Comand Prompt
+2) type: conda info --envs
+      This will give you the enviroment you can activate in the next step. Either deeplabcut, dlc-windowsCPU, or dlc-windowsGPU.
+3) type: conda activate dlc-windowsCPU
+      If this doesnt work try the other enviroments listed from conda info --envs
+4) Once you are in the new env, type: python
+5) type: import deeplabcut
+      If this step doesnt work its because the enviroment is wrong. You should restart and try a diffrent enviroment.
+6)Commands (in order of use):
+
+### Create a new project ###
+config_path = deeplabcut.create_new_project('project_name','your name','path of video')
+
+
+*At this point you may want to edit the config.yaml file. It will allow you to say what portion of the video you want to edit and
+the amount of frames you would like to train.*
+
+### Extract frames to label ###
+deeplabcut.extract_frames(config_path)
+
+
+### Label the frames ###
+deeplabcut.label_frames(config_path)
+
+### Create additional images files with your labels ###
+deeplabcut.check_labels(config_path)
+
+### Create the training dataset ###
+deeplabcut.create_training_dataset(config_path)
+
+
+### Train the network ###  (THE MORE POWERFUL THE COMPUTER THE FASTER THIS STEP)
+deeplabcut.train_network(config_path)
+
+
+### Evaluate the trained network ###
+deeplabcut.evaluate_network(config_path)
+
+### Analyze the video ###
+deeplabcut.analyze_videos(config_path, 'path of video')
+
+### Create some plots ### 
+deeplabcut.plot_trajectories(config_path, 'path of video')
+
+### Create an annotated video ###
+deeplabcut.create_labeled_video(config_path, 'path of video')
